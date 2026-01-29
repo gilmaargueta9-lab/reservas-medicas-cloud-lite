@@ -1,22 +1,15 @@
 # Prototipo Cloud Lite – Reservas de Citas Médicas
 
-Proyecto académico de Estancia Profesional ESIT.
+Proyecto académico de Estancia Profesional – ESIT.
 
-## Descripción
-Prototipo ligero en la nube para la gestión de reservas de citas médicas, orientado a bajo consumo de recursos y simplicidad.
+## Objetivo
+Desarrollar un prototipo ligero en la nube para la reserva de citas médicas, utilizando herramientas gratuitas y de bajo consumo.
 
-## Alternativa Técnica
+## Alternativa técnica seleccionada
 - Google Apps Script
 - Google Sheets
 - Google Forms
 - GitHub
 
-## Estructura del repositorio
-- /docs: documentación del proyecto
-- /bitacora: registro semanal
-- /frontend: interfaz web
-- /backend: lógica Apps Script
-- /diagrams: diagramas del sistema
-
-## Estado actual
+## Estado del proyecto
 Fase 1 – Análisis y Diseño
