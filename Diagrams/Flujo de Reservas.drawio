@@ -1,0 +1,162 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.8" pages="3">
+  <diagram name="Flujo de Reservas" id="BKa4-rbRrdkK96H22HY3">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-4" edge="1" parent="1" source="ZDSUIIzk0Cp-pyVV9xSc-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=default;" target="ZDSUIIzk0Cp-pyVV9xSc-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Paciente solicita cita" vertex="1">
+          <mxGeometry height="60" width="120" x="285" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-6" edge="1" parent="1" source="ZDSUIIzk0Cp-pyVV9xSc-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=default;" target="ZDSUIIzk0Cp-pyVV9xSc-5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Recepcionista revisa agenda física" vertex="1">
+          <mxGeometry height="60" width="120" x="285" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-8" edge="1" parent="1" source="ZDSUIIzk0Cp-pyVV9xSc-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=default;" target="ZDSUIIzk0Cp-pyVV9xSc-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Registro manual de la cita" vertex="1">
+          <mxGeometry height="60" width="120" x="285" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-7" parent="1" style="whiteSpace=wrap;html=1;rounded=0;labelBackgroundColor=none;" value="Posibles errores (traslapes / pérdida de info)" vertex="1">
+          <mxGeometry height="60" width="120" x="285" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Flujo actual de reservas (AS-IS)&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="190" x="250" y="-70" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-12" edge="1" parent="1" source="ZDSUIIzk0Cp-pyVV9xSc-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=default;" target="ZDSUIIzk0Cp-pyVV9xSc-11" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Paciente / Recepcionista" vertex="1">
+          <mxGeometry height="60" width="120" x="510" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-14" edge="1" parent="1" source="ZDSUIIzk0Cp-pyVV9xSc-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=default;" target="ZDSUIIzk0Cp-pyVV9xSc-13" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Formulario Web (Google Forms)" vertex="1">
+          <mxGeometry height="60" width="120" x="510" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-16" edge="1" parent="1" source="ZDSUIIzk0Cp-pyVV9xSc-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=default;" target="ZDSUIIzk0Cp-pyVV9xSc-15" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Validación automática (Apps Script)" vertex="1">
+          <mxGeometry height="60" width="120" x="510" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-18" edge="1" parent="1" source="ZDSUIIzk0Cp-pyVV9xSc-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;fontColor=default;" target="ZDSUIIzk0Cp-pyVV9xSc-17" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Registro en Google Sheets" vertex="1">
+          <mxGeometry height="60" width="120" x="510" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Confirmación de cita" vertex="1">
+          <mxGeometry height="60" width="120" x="510" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="ZDSUIIzk0Cp-pyVV9xSc-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Flujo propuesto de reservas (TO-BE)&lt;/b&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="190" x="480" y="-70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="3cd5CEIafDV4qj4WEVuX" name="Arquitectura Cloud Lite">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2VTP_26UJa7WX_lYD-3r-15" edge="1" parent="1" source="2VTP_26UJa7WX_lYD-3r-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2VTP_26UJa7WX_lYD-3r-14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2VTP_26UJa7WX_lYD-3r-17" edge="1" parent="1" source="2VTP_26UJa7WX_lYD-3r-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2VTP_26UJa7WX_lYD-3r-16" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2VTP_26UJa7WX_lYD-3r-19" edge="1" parent="1" source="2VTP_26UJa7WX_lYD-3r-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2VTP_26UJa7WX_lYD-3r-18" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2VTP_26UJa7WX_lYD-3r-21" edge="1" parent="1" source="2VTP_26UJa7WX_lYD-3r-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2VTP_26UJa7WX_lYD-3r-20" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2VTP_26UJa7WX_lYD-3r-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Arquitectura del Prototipo de Reservas Médicas (Cloud Lite)&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="270" x="250" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="2VTP_26UJa7WX_lYD-3r-14" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="Paciente / Recepción" vertex="1">
+          <mxGeometry height="60" width="120" x="70" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="2VTP_26UJa7WX_lYD-3r-16" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="&lt;div&gt;Formulario Web&lt;/div&gt;&lt;div&gt;(Google Forms)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="2VTP_26UJa7WX_lYD-3r-18" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="&lt;div&gt;Lógica del sistema&lt;/div&gt;&lt;div&gt;(Google Apps Script)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="414" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="2VTP_26UJa7WX_lYD-3r-20" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="&lt;div&gt;Base de datos&lt;/div&gt;&lt;div&gt;(Google Sheets)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="590" y="300" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="X64cQUZr7Ra_Y6N2cp4R" name="Modelo de Datos">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Paciente&#xa;----------------&#xa;- Nombre&#xa;- Teléfono" vertex="1">
+          <mxGeometry height="60" width="120" x="70" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;Médico&lt;/div&gt;&lt;div&gt;----------------&lt;/div&gt;&lt;div&gt;- Nombre&lt;/div&gt;&lt;div&gt;- Especialidad&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="380" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-14" edge="1" parent="1" source="LXpvEBTiSHrf-B0kCMIj-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="LXpvEBTiSHrf-B0kCMIj-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-15" edge="1" parent="1" source="LXpvEBTiSHrf-B0kCMIj-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="LXpvEBTiSHrf-B0kCMIj-6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Entidad: Paciente" vertex="1">
+          <mxGeometry height="30" width="120" x="70" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-17" edge="1" parent="1" source="LXpvEBTiSHrf-B0kCMIj-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="LXpvEBTiSHrf-B0kCMIj-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-18" edge="1" parent="1" source="LXpvEBTiSHrf-B0kCMIj-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="LXpvEBTiSHrf-B0kCMIj-6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Entidad: Médico" vertex="1">
+          <mxGeometry height="30" width="120" x="380" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-16" edge="1" parent="1" source="LXpvEBTiSHrf-B0kCMIj-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="LXpvEBTiSHrf-B0kCMIj-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-21" edge="1" parent="1" source="LXpvEBTiSHrf-B0kCMIj-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="290" y="90" />
+              <mxPoint x="595" y="90" />
+            </Array>
+            <mxPoint x="285" y="125" as="sourcePoint" />
+            <mxPoint x="595" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Entidad: Cita" vertex="1">
+          <mxGeometry height="30" width="120" x="230" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;Cita&lt;/div&gt;&lt;div&gt;----------------&lt;/div&gt;&lt;div&gt;- Fecha&lt;/div&gt;&lt;div&gt;- Hora&lt;/div&gt;&lt;div&gt;- Estado&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="120" x="230" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-22" edge="1" parent="1" source="LXpvEBTiSHrf-B0kCMIj-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="LXpvEBTiSHrf-B0kCMIj-11" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Entidad: EstadoCita" vertex="1">
+          <mxGeometry height="30" width="120" x="540" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;EstadoCita&lt;/div&gt;&lt;div&gt;----------------&lt;/div&gt;&lt;div&gt;- Programada&lt;/div&gt;&lt;div&gt;- Cancelada&lt;/div&gt;&lt;div&gt;- Atendida&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="120" x="540" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="LXpvEBTiSHrf-B0kCMIj-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;“Modelo de Datos – Sistema de Reservas Médicas”&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="390" x="170" y="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
