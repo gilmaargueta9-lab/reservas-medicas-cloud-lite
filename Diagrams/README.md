@@ -1,4 +1,4 @@
-# Diagrams
+# Diagramas
 
 Esta carpeta contiene los diagramas del proyecto:
 - Flujo de reservas
