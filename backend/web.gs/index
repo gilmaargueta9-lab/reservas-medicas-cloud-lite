@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Reservar Cita</title>
+</head>
+<body>
+  <h2>Reservar Cita Médica</h2>
+
+  <form id="formCita">
+    <label>Paciente:</label><br>
+    <input type="text" id="paciente" required><br><br>
+
+    <label>Médico:</label><br>
+    <input type="text" id="medico" required><br><br>
+
+    <label>Fecha:</label><br>
+    <input type="date" id="fecha" required><br><br>
+
+    <label>Hora:</label><br>
+    <input type="time" id="hora" required><br><br>
+
+    <button type="button" onclick="guardar()">Guardar Cita</button>
+  </form>
+
+  <p id="mensaje"></p>
+
+  <script>
+    function guardar() {
+      const cita = {
+        paciente: document.getElementById("paciente").value,
+        medico: document.getElementById("medico").value,
+        fecha: document.getElementById("fecha").value,
+        hora: document.getElementById("hora").value
+      };
+
+      google.script.run
+        .withSuccessHandler(respuesta)
+        .guardarCita(cita);
+    }
+
+    function respuesta(msg) {
+      document.getElementById("mensaje").innerText = msg;
+      document.getElementById("formCita").reset();
+    }
+  </script>
+</body>
+</html>
