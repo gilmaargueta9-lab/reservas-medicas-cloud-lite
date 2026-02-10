@@ -1,25 +1,29 @@
-# Prototipo de Reservas Médicas Cloud Lite
-
-Proyecto académico ESIT – Grupo 4
+# Prototipo de Reservas Médicas en la Nube (Lite)
 
 ## Descripción
-Sistema cloud lite para la gestión de citas médicas utilizando Google Apps Script y Google Sheets, orientado a clínicas pequeñas.
-
-## Funcionalidades
-- Crear citas médicas
-- Listar citas por día o médico
-- Reprogramar y cancelar citas
-- Validaciones de horario y fecha
-- Persistencia en la nube
-
-## Arquitectura
-Usuario → Web App → Apps Script → Google Sheets
+Sistema académico para gestión básica de citas médicas en la nube.
 
 ## Tecnologías
 - Google Apps Script
 - Google Sheets
+- HTML / JavaScript
 - GitHub
-- Draw.io
+
+## Funcionalidades
+- Crear citas
+- Listar citas
+- Reprogramar
+- Cancelar
+- Validar solapamiento
+- ID alfanumérico
+
+## Despliegue
+Publicado como Web App  
+Permisos: Anyone with the link
+
+## Equipo
+Grupo 4 – ESIT
+
 
 ## Despliegue
 El sistema se publica como Web App con permisos:
