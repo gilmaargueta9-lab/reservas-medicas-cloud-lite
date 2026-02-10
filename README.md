@@ -24,13 +24,3 @@ Permisos: Anyone with the link
 ## Equipo
 Grupo 4 – ESIT
 
-
-## Despliegue
-El sistema se publica como Web App con permisos:
-"Anyone with the link"
-
-## Estado
-Prototipo funcional (académico)
-
-## Equipo
-Grupo 4 – ESIT
