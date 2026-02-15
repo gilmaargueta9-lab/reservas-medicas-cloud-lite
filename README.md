@@ -45,7 +45,6 @@ Equipo de trabajo
 - Tania Elizabeth Molina Cáceres – Cloud
 - Dania Celina Rosales Barrera – QA
 
-Estado del proyecto
-
-✔️ Fase 3 completada  
-✔️ Sistema funcional y validado  
+## Estado del proyecto
+-Fase 3 completada  
+- Sistema funcional y validado  
