@@ -46,5 +46,6 @@ Equipo de trabajo
 - Dania Celina Rosales Barrera – QA
 
 Estado del proyecto
+
 ✔️ Fase 3 completada  
 ✔️ Sistema funcional y validado  
