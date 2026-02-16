@@ -1,6 +1,9 @@
 const SPREADSHEET_ID = "1vG5anL_U086FCc9zgWEq7lZ9WCs7RoS4sDB3TaQ5LxA";
-const SHEET_NAME = "Citas";
+const SHEET_NAME = "citas";
 
 function getSheet() {
-  return SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName(SHEET_NAME);
+  if (!sheet) throw new Error("No existe la hoja 'citas'");
+  return sheet;
 }
