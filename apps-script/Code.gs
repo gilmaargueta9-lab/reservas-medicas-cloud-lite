@@ -1,95 +1,161 @@
+/**********************************
+ * WEB APP
+ **********************************/
 function doGet() {
-  return HtmlService.createTemplateFromFile('Index')
-      .evaluate()
-      .setTitle('Sistema de Reservas Médicas')
-      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  return HtmlService
+    .createHtmlOutputFromFile("Index")
+    .setTitle("Reservas Médicas CISS");
 }
 
+/**********************************
+ * CONEXIÓN A SHEET
+ **********************************/
 function getSheet() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName("citas");
-  if (!sheet) throw new Error("No se encontró la pestaña 'citas'");
-  return sheet;
+  const sh = SpreadsheetApp.getActive().getSheetByName("citas");
+  if (!sh) throw new Error("No existe la hoja 'citas'");
+  return sh;
 }
 
-function obtenerCitasFiltradas(filtro) {
-  try {
-    const sheet = getSheet();
-    const data = sheet.getDataRange().getValues();
-    if (data.length <= 1) return [];
-    data.shift(); 
-
-    const fechaBusqueda = filtro.fecha || ""; 
-    const textoBusqueda = filtro.texto ? filtro.texto.toLowerCase().trim() : "";
-
-    return data.map((fila, index) => {
-      if (!fila[0]) return null;
-      
-      let fechaBD = "";
-      if (fila[2] instanceof Date) {
-        fechaBD = Utilities.formatDate(fila[2], Session.getScriptTimeZone(), "yyyy-MM-dd");
-      } else {
-        fechaBD = fila[2].toString();
-      }
-
-      return {
-        fecha: fechaBD,
-        hora: fila[3] ? fila[3].toString() : "",
-        medico: fila[4] ? fila[4].toString() : "",
-        paciente: fila[5] ? fila[5].toString() : "",
-        telefono: fila[6] ? fila[6].toString() : "", 
-        estado: fila[7] ? fila[7].toString() : "",
-        indiceOriginal: index 
-      };
-    }).filter(cita => {
-      if (!cita || cita.estado !== "Programada") return false;
-      
-      let cumpleFecha = !fechaBusqueda || (cita.fecha === fechaBusqueda);
-      // Busca el texto tanto en Médico como en Paciente para mayor flexibilidad
-      let cumpleTexto = !textoBusqueda || (
-        cita.medico.toLowerCase().includes(textoBusqueda) || 
-        cita.paciente.toLowerCase().includes(textoBusqueda)
-      );
-      
-      return cumpleFecha && cumpleTexto;
-    });
-  } catch (e) {
-    return [];
-  }
-}
-
+/**********************************
+ * GUARDAR / REPROGRAMAR CITA
+ **********************************/
 function guardarOActualizarCita(cita) {
-  try {
-    const sheet = getSheet();
-    const estado = "Programada";
 
-    if (cita.indice !== null && cita.indice !== undefined) {
-      const fila = Number(cita.indice) + 2;
-      sheet.getRange(fila, 3).setValue(cita.fecha);
-      sheet.getRange(fila, 4).setValue(cita.hora);
-      sheet.getRange(fila, 5).setValue(cita.medico);
-      sheet.getRange(fila, 6).setValue(cita.paciente);
-      sheet.getRange(fila, 7).setValue(cita.telefono);
-      return "Cita actualizada correctamente";
-    }
-
-    const idCita = generarIdCita();
-    sheet.appendRow([idCita, new Date(), cita.fecha, cita.hora, cita.medico, cita.paciente, cita.telefono, estado]);
-    return "Cita guardada correctamente. ID: " + idCita;
-  } catch (e) {
-    return "Error: " + e.toString();
+  if (
+    !cita ||
+    !cita.paciente?.trim() ||
+    !cita.medico?.trim() ||
+    !cita.fecha ||
+    !cita.hora ||
+    !cita.telefono?.trim()
+  ) {
+    throw new Error("⚠️ Todos los campos son obligatorios");
   }
-}
 
-function cancelarCita(indexOriginal) {
   const sheet = getSheet();
-  const fila = Number(indexOriginal) + 2; 
-  sheet.getRange(fila, 8).setValue("Cancelada");
-  return "Cita cancelada correctamente.";
+  const data = sheet.getDataRange().getValues();
+  data.shift(); // eliminar cabecera
+
+  const fechaNueva = cita.fecha;                 
+  const horaNueva  = normalizarHora(cita.hora);  
+  const medicoNuevo = cita.medico.toLowerCase().trim();
+
+  for (let i = 0; i < data.length; i++) {
+
+    if (cita.indice !== null && i === Number(cita.indice)) continue;
+
+    const fechaBD = data[i][2] instanceof Date
+      ? Utilities.formatDate(data[i][2], Session.getScriptTimeZone(), "yyyy-MM-dd")
+      : data[i][2];
+
+    const horaBD = normalizarHora(data[i][3]);
+    const medicoBD = data[i][4].toString().toLowerCase().trim();
+    const estadoBD = data[i][7];
+
+    if (
+      estadoBD === "Programada" &&
+      fechaBD === fechaNueva &&
+      horaBD === horaNueva &&
+      medicoBD === medicoNuevo
+    ) {
+      throw new Error(
+        `🚫 El Dr. ${cita.medico} ya tiene una cita el ${fechaNueva} a las ${horaNueva}`
+      );
+    }
+  }
+
+  if (cita.indice !== null && cita.indice !== undefined) {
+    const fila = Number(cita.indice) + 2;
+    sheet.getRange(fila, 3, 1, 5).setValues([[
+      fechaNueva,
+      horaNueva,
+      cita.medico,
+      cita.paciente,
+      cita.telefono
+    ]]);
+    return "✏️ Cita modificada correctamente";
+  }
+
+  const idCita = generarId();
+
+  sheet.appendRow([
+    idCita,         
+    new Date(),     
+    fechaNueva,    
+    horaNueva,       
+    cita.medico,
+    cita.paciente,
+    cita.telefono,
+    "Programada"
+  ]);
+
+  return "✅ Cita registrada correctamente. ID: " + idCita;
 }
 
-function generarIdCita() {
-  const fecha = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyyMMdd");
-  const random = Math.random().toString(36).substring(2, 6).toUpperCase();
-  return "CITA-" + fecha + "-" + random;
+/**********************************
+ * BUSCAR CITAS
+ **********************************/
+function obtenerCitasFiltradas(f) {
+
+  const data = getSheet().getDataRange().getValues();
+  data.shift();
+
+  return data.map((r, i) => {
+
+    const fechaRaw = r[2] instanceof Date
+      ? Utilities.formatDate(r[2], Session.getScriptTimeZone(), "yyyy-MM-dd")
+      : r[2];
+
+    return {
+      fechaRaw,
+      fecha: Utilities.formatDate(new Date(fechaRaw), Session.getScriptTimeZone(), "dd/MM/yyyy"),
+      hora: normalizarHora(r[3]),
+      medico: r[4],
+      paciente: r[5],
+      telefono: r[6],
+      estado: r[7],
+      indiceOriginal: i
+    };
+
+  }).filter(c =>
+    c.estado === "Programada" &&
+    (!f.fecha || c.fechaRaw === f.fecha) &&
+    (
+      !f.texto ||
+      c.medico.toLowerCase().includes(f.texto.toLowerCase()) ||
+      c.paciente.toLowerCase().includes(f.texto.toLowerCase())
+    )
+  );
+}
+
+/**********************************
+ * CANCELAR CITA
+ **********************************/
+function cancelarCitaServidor(i) {
+  getSheet().getRange(Number(i) + 2, 8).setValue("Cancelada");
+  return "❌ Cita cancelada correctamente";
+}
+
+/**********************************
+ * UTILIDADES
+ **********************************/
+function normalizarHora(h) {
+  if (!h) return "";
+
+  // Si viene como Date
+  if (h instanceof Date) {
+    return Utilities.formatDate(
+      h,
+      Session.getScriptTimeZone(),
+      "HH:mm"
+    );
+  }
+
+  return h.toString().substring(0, 5);
+}
+
+function generarId() {
+  const f = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyyMMdd");
+  const r = Math.random().toString(36).substring(2, 6).toUpperCase();
+  return "CITA-" + f + "-" + r;
 }
