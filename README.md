@@ -33,7 +33,7 @@ Validar el correcto funcionamiento del sistema mediante pruebas funcionales, det
 
 ## Web App
 URL pública:
-(https://script.google.com/macros/s/AKfycbxUtVJsRhFzN6MdxWOT1a36HVqAbY79pOhnxJOENoMQ_IEe3V_Tcnc6r3GZH8rPUZL5/exec)
+https://script.google.com/macros/s/AKfycbwCRv6QrxH5_dJf0_ylvE2ywY3nAOJPQYMgqBrur5WQ0732t9Y1krz9ji5QxjdoepgS/exec
 
 ## Evidencias
 Las evidencias de pruebas se encuentran en la carpeta `/evidencias`.
