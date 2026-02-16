@@ -1,168 +1,206 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; margin: 20px; }
-    input { margin-bottom: 10px; padding: 5px; width: 250px; }
-    button { padding: 8px 15px; cursor: pointer; margin-top: 5px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-    #mensaje { font-weight: bold; padding: 10px; }
-    .btn-cancelar { background-color: #ff4d4d; color: white; border: none; }
-  </style>
+<meta charset="UTF-8">
+<title>Reservas Médicas</title>
+
+<style>
+body{
+  font-family: "Segoe UI", sans-serif;
+  background:#eef2f7;
+  padding:20px;
+}
+.card{
+  max-width:900px;
+  margin:auto;
+  background:#fff;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+h2,h3{margin-top:0}
+input,button{
+  padding:10px;
+  width:100%;
+  margin:6px 0;
+  font-size:14px;
+}
+button{
+  background:#1976d2;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+button:hover{opacity:.9}
+button.danger{background:#d32f2f}
+table{
+  width:100%;
+  margin-top:20px;
+  border-collapse:collapse;
+}
+th,td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+  text-align:left;
+}
+th{background:#f5f7fa}
+.msg{
+  margin:10px 0;
+  font-weight:bold;
+}
+</style>
 </head>
+
 <body>
+<div class="card">
 
-<h2>Reservar Cita Médica</h2>
-<form id="formCita">
-  Paciente: <br><input type="text" id="paciente" required><br>
-  Médico: <br><input type="text" id="medico" required><br>
-  Fecha: <br><input type="date" id="fecha" required><br>
-  Hora: <br><input type="time" id="hora" required><br>
-  Teléfono: <br><input type="text" id="telefono" required><br>
-  <button type="button" id="btnGuardar" onclick="guardar()">Guardar Cita</button>
-  <button type="button" onclick="limpiar()">Limpiar</button>
-</form>
+<h2>Reservar / Editar Cita</h2>
 
-<p id="mensaje"></p>
+<input id="paciente" placeholder="Paciente">
+<input id="medico" placeholder="Médico">
+<input type="date" id="fecha">
+<input type="time" id="hora" step="60">
+<input id="telefono" placeholder="Teléfono">
+
+<button onclick="guardar()">Guardar / Actualizar</button>
+<button onclick="limpiar()">Limpiar</button>
+
+<div id="msg" class="msg"></div>
 
 <hr>
 
-<h3>Consultar Citas</h3>
-<div>
-  Fecha: <input type="date" id="filtroFecha">
-  Médico/Paciente: <input type="text" id="filtroTexto" placeholder="Nombre...">
-  <button onclick="listar()">Buscar</button>
-</div>
+<h3>Buscar Citas</h3>
+<input type="date" id="fFecha">
+<input id="fTexto" placeholder="Médico o Paciente">
+<button onclick="listar()">Buscar</button>
 
-<table id="tabla">
-  <thead>
-    <tr>
-      <th>Fecha</th><th>Hora</th><th>Médico</th><th>Paciente</th><th>Estado</th><th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
+<table>
+<thead>
+<tr>
+  <th>Fecha</th>
+  <th>Hora</th>
+  <th>Médico</th>
+  <th>Paciente</th>
+  <th>Acción</th>
+</tr>
+</thead>
+<tbody id="tb"></tbody>
 </table>
 
+</div>
+
 <script>
-let citasGlobal = [];
-let indiceParaEditar = null;
+let indiceEdicion = null;
+let cache = [];
 
-function guardar() {
-  const msg = document.getElementById("mensaje");
-  const fechaVal = document.getElementById("fecha").value;
-  
-  if(!fechaVal) { alert("Selecciona una fecha"); return; }
-
-  const hoy = new Date(); hoy.setHours(0,0,0,0);
-  const fCita = new Date(fechaVal + "T00:00:00");
-
-  if (fCita < hoy) {
-    msg.innerText = "No puedes usar fechas pasadas";
-    msg.style.color = "red";
-    return;
-  }
+/* ================= GUARDAR / ACTUALIZAR ================= */
+function guardar(){
+  msg.innerText = "";
 
   const datos = {
-    paciente: document.getElementById("paciente").value,
-    medico: document.getElementById("medico").value,
-    fecha: fechaVal,
-    hora: document.getElementById("hora").value,
-    telefono: document.getElementById("telefono").value,
-    indice: indiceParaEditar
+    paciente: paciente.value.trim(),
+    medico: medico.value.trim(),
+    fecha: fecha.value,
+    hora: hora.value,
+    telefono: telefono.value.trim(),
+    indice: indiceEdicion
   };
 
-  msg.innerText = "Procesando...";
-  msg.style.color = "blue";
-  
   google.script.run
-    .withSuccessHandler(res => {
-      msg.innerText = res;
+    .withSuccessHandler(r=>{
+      msg.innerText = r;
       msg.style.color = "green";
-      limpiar();
       listar();
+      limpiar(false);
+    })
+    .withFailureHandler(e=>{
+      msg.innerText = e.message;
+      msg.style.color = "red";
     })
     .guardarOActualizarCita(datos);
 }
 
-function listar() {
-  const f = {
-    fecha: document.getElementById("filtroFecha").value,
-    texto: document.getElementById("filtroTexto").value
-  };
-  document.querySelector("#tabla tbody").innerHTML = "<tr><td colspan='6'>Buscando...</td></tr>";
-  google.script.run.withSuccessHandler(pintar).obtenerCitasFiltradas(f);
+/* ================= LISTAR ================= */
+function listar(){
+  tb.innerHTML = "<tr><td colspan='5'>Cargando...</td></tr>";
+
+  google.script.run
+    .withSuccessHandler(d=>{
+      cache = d;
+      tb.innerHTML = "";
+
+      if(!d.length){
+        tb.innerHTML = "<tr><td colspan='5'>No hay resultados</td></tr>";
+        return;
+      }
+
+      d.forEach((c,i)=>{
+        tb.innerHTML += `
+        <tr>
+          <td>${c.fecha}</td>
+          <td>${c.hora}</td>
+          <td>${c.medico}</td>
+          <td>${c.paciente}</td>
+          <td>
+            <button onclick="editar(${i})">Editar</button>
+            <button class="danger" onclick="cancelar(${c.indiceOriginal})">X</button>
+          </td>
+        </tr>`;
+      });
+    })
+    .withFailureHandler(()=>{
+      tb.innerHTML = "<tr><td colspan='5'>Error al cargar</td></tr>";
+    })
+    .obtenerCitasFiltradas({
+      fecha: fFecha.value,
+      texto: fTexto.value
+    });
 }
 
-function pintar(citas) {
-  const tbody = document.querySelector("#tabla tbody");
-  tbody.innerHTML = "";
-  citasGlobal = citas;
-  
-  if (!citas || citas.length === 0) {
-    tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; color:orange;'>No hay resultados para esa fecha/nombre.</td></tr>";
-    return;
-  }
-  
-  citas.forEach((c, i) => {
-    // Formatear fecha para el usuario
-    const partes = c.fecha.split("-");
-    const fechaLimpia = partes.length === 3 ? `${partes[2]}/${partes[1]}/${partes[0]}` : c.fecha;
-    
-    // Limpiar hora
-    let h = c.hora.toString();
-    const match = h.match(/(\d{2}:\d{2})/);
-    let horaVisible = match ? match[0] : h;
+/* ================= EDITAR ================= */
+function editar(i){
+  const c = cache[i];
 
-    let tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${fechaLimpia}</td>
-      <td>${horaVisible}</td>
-      <td>${c.medico}</td>
-      <td>${c.paciente}</td>
-      <td>${c.estado}</td>
-      <td>
-        <button onclick="editar(${i})">Editar</button>
-        <button onclick="cancelar(${i})" class="btn-cancelar">X</button>
-      </td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
+  paciente.value = c.paciente;
+  medico.value = c.medico;
+  fecha.value = c.fechaRaw;
+  hora.value = c.hora;
+  telefono.value = c.telefono || "";
 
-function editar(i) {
-  const c = citasGlobal[i];
-  indiceParaEditar = c.indiceOriginal;
-  document.getElementById("paciente").value = c.paciente;
-  document.getElementById("medico").value = c.medico;
-  document.getElementById("fecha").value = c.fecha;
-  
-  const match = c.hora.toString().match(/(\d{2}:\d{2})/);
-  document.getElementById("hora").value = match ? match[0] : "";
-  
-  document.getElementById("telefono").value = c.telefono;
-  document.getElementById("btnGuardar").innerText = "Actualizar Cita";
+  indiceEdicion = c.indiceOriginal;
+
+  msg.innerText = "✏️ Modo edición activado";
+  msg.style.color = "orange";
   window.scrollTo(0,0);
 }
 
-function cancelar(i) {
-  const c = citasGlobal[i];
-  if(confirm("¿Seguro que deseas cancelar la cita de " + c.paciente + "?")) {
-    document.getElementById("mensaje").innerText = "Cancelando...";
-    google.script.run.withSuccessHandler(res => {
-      document.getElementById("mensaje").innerText = res;
-      document.getElementById("mensaje").style.color = "green";
-      listar();
-    }).cancelarCita(c.indiceOriginal);
+/* ================= CANCELAR ================= */
+function cancelar(i){
+  if(confirm("¿Cancelar esta cita?")){
+    google.script.run
+      .withSuccessHandler(r=>{
+        alert(r);
+        listar();
+      })
+      .withFailureHandler(e=>{
+        alert(e.message);
+      })
+      .cancelarCitaServidor(i);
   }
 }
 
-function limpiar() {
-  document.getElementById("formCita").reset();
-  indiceParaEditar = null;
-  document.getElementById("btnGuardar").innerText = "Guardar Cita";
+/* ================= LIMPIAR ================= */
+function limpiar(borrarMsg=true){
+  paciente.value = "";
+  medico.value = "";
+  fecha.value = "";
+  hora.value = "";
+  telefono.value = "";
+  indiceEdicion = null;
+  if(borrarMsg) msg.innerText = "";
 }
 </script>
+
 </body>
 </html>
