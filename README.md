@@ -83,4 +83,12 @@ El sistema fue desplegado como Web App en Google Apps Script.
 
 ---
 
-## 📂 Estructura del Repositorio
+## Estructura del Repositorio
+1. Diagrams
+2. apps-script
+3. backend
+4. bitacora
+5. docs
+6. evidencias
+7. frontend
+   
