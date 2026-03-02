@@ -1,50 +1,86 @@
-## Sistema de Reservas Médicas – Fase 3
+# 🏥 Sistema de Reservas Médicas – MVP Académico
 
-## Descripción
-Aplicación web desarrollada con Google Apps Script y Google Sheets que permite gestionar reservas médicas mediante un formulario web accesible públicamente.
+## Descripción del Proyecto
+Sistema web desarrollado como MVP académico que permite registrar citas médicas, validando reglas de negocio básicas como:
 
-## Objetivo de la Fase 3
-Validar el correcto funcionamiento del sistema mediante pruebas funcionales, detección de errores y aplicación de correcciones.
+- No permitir fechas pasadas
+- Evitar conflicto de horarios
+- Validación obligatoria de campos
+- Control lógico desde backend
 
-## Pruebas realizadas
-- Creación de citas
-- Validación de campos obligatorios
-- Restricción de fechas pasadas
-- Consulta por fecha y texto
-- Edición de citas
-- Cancelación de citas
-- Persistencia de datos en Google Sheets
+El sistema fue desarrollado utilizando Google Apps Script y Google Sheets como base de datos ligera.
 
-## Problemas detectados
-- Inconsistencia en formato de fechas
-- Campos no persistían correctamente
-- Validación incompleta de estados
+---
 
-## Correcciones aplicadas
-- Normalización de formato de fecha
-- Corrección de índices y campos
-- Refuerzo de validaciones de negocio
+## Objetivo
+Construir un sistema funcional, auditable y replicable que demuestre:
 
-## Tecnologías utilizadas
-- Google Apps Script
-- Google Sheets
-- HTML / JavaScript
-- GitHub
+- Aplicación de arquitectura ligera cliente-servidor
+- Validaciones en doble capa (frontend y backend)
+- Control básico de seguridad
+- Pruebas documentadas
+- Despliegue funcional como Web App
 
-## Web App
-URL pública:
-https://script.google.com/macros/s/AKfycbwCRv6QrxH5_dJf0_ylvE2ywY3nAOJPQYMgqBrur5WQ0732t9Y1krz9ji5QxjdoepgS/exec
+---
 
-## Evidencias
-Las evidencias de pruebas se encuentran en la carpeta `/evidencias`.
+## Arquitectura
 
-Equipo de trabajo
-- Gilma Magdalena Argueta Henríquez – Líder
-- Dany Saul Deras Galvez – Analista
-- José Jafet Hernández Ortiz – Desarrollo
-- Tania Elizabeth Molina Cáceres – Cloud
-- Dania Celina Rosales Barrera – QA
+Cliente (HTML Form)  
+↓  
+Google Apps Script (Backend lógico)  
+↓  
+Google Sheets (Persistencia de datos)
 
-## Estado del proyecto
-- Fase 3 completada  
-- Sistema funcional y validado  
+- Arquitectura tipo cliente-servidor ligera
+- Backend ejecutado en entorno Google
+- Persistencia estructurada en hoja de cálculo
+
+---
+
+## Seguridad Implementada
+
+- Validación de payload en backend
+- Regla de fecha futura obligatoria
+- Prevención de doble reserva
+- Aplicación del principio de menor privilegio en permisos de hoja
+- No exposición de credenciales ni claves API
+
+---
+
+## Validaciones Aplicadas
+
+- Campos obligatorios
+- Fecha válida y futura
+- Validación de conflicto horario
+- Mensajes de error descriptivos
+
+---
+
+## Pruebas
+
+Se ejecutaron:
+
+- Pruebas positivas (flujo correcto)
+- Pruebas negativas (datos inválidos)
+- Pruebas de conflicto horario
+- Validación externa en modo incógnito
+
+Ver matriz de pruebas en documentación del proyecto.
+
+---
+
+## Despliegue
+
+El sistema fue desplegado como Web App en Google Apps Script.
+
+### Pasos para replicar:
+
+1. Crear un proyecto en Google Apps Script
+2. Copiar el código fuente
+3. Vincular hoja de Google Sheets
+4. Configurar permisos mínimos necesarios
+5. Deploy como Web App
+
+---
+
+## 📂 Estructura del Repositorio
